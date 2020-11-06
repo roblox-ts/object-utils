@@ -3,11 +3,11 @@ interface ObjectConstructor {
 	 * Copy the values of all of the enumerable own properties from one or more source objects to a target object.
 	 * Returns the target object.
 	 */
-	assign<A, B>(this: ObjectConstructor, target: A, source: B): A & B;
-	assign<A, B, C>(this: ObjectConstructor, target: A, source1: B, source2: C): A & B & C;
-	assign<A, B, C, D>(this: ObjectConstructor, target: A, source1: B, source2: C, source3: D): A & B & C & D;
+	assign<A, B>(this: void, target: A, source: B): A & B;
+	assign<A, B, C>(this: void, target: A, source1: B, source2: C): A & B & C;
+	assign<A, B, C, D>(this: void, target: A, source1: B, source2: C, source3: D): A & B & C & D;
 	assign<A, B, C, D, E>(
-		this: ObjectConstructor,
+		this: void,
 		target: A,
 		source1: B,
 		source2: C,
@@ -15,7 +15,7 @@ interface ObjectConstructor {
 		source4: E,
 	): A & B & C & D & E;
 	assign<A, B, C, D, E, F>(
-		this: ObjectConstructor,
+		this: void,
 		target: A,
 		source1: B,
 		source2: C,
@@ -23,14 +23,14 @@ interface ObjectConstructor {
 		source4: E,
 		source5: F,
 	): A & B & C & D & E & F;
-	assign(this: ObjectConstructor, target: object, ...sources: Array<any>): any;
+	assign(this: void, target: object, ...sources: Array<any>): any;
 
 	/**
 	 * Returns the names of the enumerable properties and methods of an object.
 	 * @param o Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
 	 */
 	keys<T extends object>(
-		this: ObjectConstructor,
+		this: void,
 		o: T,
 	): T extends Array<any>
 		? Array<number>
@@ -49,7 +49,7 @@ interface ObjectConstructor {
 	 * @param o Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
 	 */
 	values<T extends object>(
-		this: ObjectConstructor,
+		this: void,
 		o: T,
 	): T extends Array<infer U>
 		? Array<NonNullable<U>>
@@ -68,7 +68,7 @@ interface ObjectConstructor {
 	 * @param o Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
 	 */
 	entries<T extends object>(
-		this: ObjectConstructor,
+		this: void,
 		o: T,
 	): T extends Array<infer U>
 		? Array<[number, NonNullable<U>]>
@@ -84,7 +84,7 @@ interface ObjectConstructor {
 
 	/** Creates an object from a set of entries */
 	fromEntries<P extends readonly [string | number | symbol, unknown]>(
-		this: ObjectConstructor,
+		this: void,
 		i: ReadonlyArray<P>,
 	): Reconstruct<
 		UnionToIntersection<
@@ -99,17 +99,17 @@ interface ObjectConstructor {
 	/**
 	 * Returns true if empty, otherwise false.
 	 */
-	isEmpty(this: ObjectConstructor, o: object): boolean;
+	isEmpty(this: void, o: object): boolean;
 
 	/**
 	 * Returns a shallow copy of the object
 	 */
-	copy<T extends object>(this: ObjectConstructor, o: T): T;
+	copy<T extends object>(this: void, o: T): T;
 
 	/**
 	 * Returns a deep copy of the object
 	 */
-	deepCopy<T extends object>(this: ObjectConstructor, o: T): T;
+	deepCopy<T extends object>(this: void, o: T): T;
 
 	/**
 	 * Returns true if
@@ -118,7 +118,7 @@ interface ObjectConstructor {
 	 *
 	 * Searches recursively.
 	 */
-	deepEquals(this: ObjectConstructor, a: object, b: object): boolean;
+	deepEquals(this: void, a: object, b: object): boolean;
 }
 
 declare const Object: ObjectConstructor;
