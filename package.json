@@ -1,12 +1,16 @@
 {
 	"name": "@rbxts/object-utils",
 	"version": "1.0.1",
-	"description": "",
+	"description": "Polyfills for Object functions",
 	"main": "init.lua",
 	"typings": "index.d.ts",
 	"scripts": {},
 	"author": "",
 	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/roblox-ts/rbxts-object-utils.git"
+	},
 	"devDependencies": {
 		"@rbxts/types": "^1.0.423"
 	},
