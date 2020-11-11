@@ -3,7 +3,7 @@ local HttpService = game:GetService("HttpService")
 local Object = {}
 
 function Object.keys(object)
-	local result = {}
+	local result = table.create(#object)
 	for key in pairs(object) do
 		result[#result + 1] = key
 	end
@@ -11,7 +11,7 @@ function Object.keys(object)
 end
 
 function Object.values(object)
-	local result = {}
+	local result = table.create(#object)
 	for _, value in pairs(object) do
 		result[#result + 1] = value
 	end
@@ -19,7 +19,7 @@ function Object.values(object)
 end
 
 function Object.entries(object)
-	local result = {}
+	local result = table.create(#object)
 	for key, value in pairs(object) do
 		result[#result + 1] = { key, value }
 	end
@@ -39,7 +39,7 @@ function Object.assign(toObj, ...)
 end
 
 function Object.copy(object)
-	local result = {}
+	local result = table.create(#object)
 	for k, v in pairs(object) do
 		result[k] = v
 	end
@@ -47,7 +47,7 @@ function Object.copy(object)
 end
 
 local function deepCopyHelper(object, encountered)
-	local result = {}
+	local result = table.create(#object)
 	encountered[object] = result
 
 	for k, v in pairs(object) do
@@ -103,9 +103,11 @@ function Object.isEmpty(object)
 end
 
 function Object.fromEntries(pairs)
-	local result = {}
+	local pairsLen = #pairs
+
+	local result = table.create(pairsLen)
 	if pairs then
-		for i = 1, #pairs do
+		for i = 1, pairsLen do
 			local pair = pairs[i]
 			result[pair[1]] = pair[2]
 		end
