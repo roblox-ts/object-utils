@@ -102,13 +102,13 @@ function Object.isEmpty(object)
 	return next(object) == nil
 end
 
-function Object.fromEntries(pairs)
-	local pairsLen = #pairs
+function Object.fromEntries(entries)
+	local entriesLen = #entries
 
-	local result = table.create(pairsLen)
-	if pairs then
-		for i = 1, pairsLen do
-			local pair = pairs[i]
+	local result = table.create(entriesLen)
+	if entries then
+		for i = 1, entriesLen do
+			local pair = entries[i]
 			result[pair[1]] = pair[2]
 		end
 	end
