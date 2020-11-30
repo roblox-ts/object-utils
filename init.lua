@@ -27,8 +27,7 @@ function Object.entries(object)
 end
 
 function Object.assign(toObj, ...)
-	for i = 1, select("#", ...) do
-		local arg = select(i, ...)
+	for _, arg in ipairs({...}) do
 		if type(arg) == "table" then
 			for key, value in pairs(arg) do
 				toObj[key] = value
@@ -103,16 +102,27 @@ function Object.isEmpty(object)
 end
 
 function Object.fromEntries(entries)
-	local entriesLen = #entries
-
-	local result = table.create(entriesLen)
+	local result = table.create(#entries)
 	if entries then
-		for i = 1, entriesLen do
-			local pair = entries[i]
+		for _, pair in ipairs(entries) do
 			result[pair[1]] = pair[2]
 		end
 	end
 	return result
+end
+
+function Object.splice(object, index, howMany, ...)
+	local elements = table.pack(...)
+	local num = #object
+
+	local max = num - (index > num and 0 or math.min(num - (index - 1), howMany)) + elements.n
+	local new = table.create(max)
+
+	table.move(object, 1, index - 1, 1, new)
+	table.move(elements, 1, elements.n, #new + 1, new)
+	table.move(object, index + howMany, num, #new + 1, new)
+
+	return new
 end
 
 return Object
