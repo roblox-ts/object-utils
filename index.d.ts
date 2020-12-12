@@ -85,14 +85,6 @@ interface ObjectConstructor {
 	 * Searches recursively.
 	 */
 	deepEquals(this: void, a: object, b: object): boolean;
-
-	/**
-	 * Returns the spliced array.
-	 * @param index Index at which to start changing the array.
-	 * @param howMany An integer indicating the number of old array elements to remove. If howMany is 0, no elements are removed.
-	 * @param args The elements to add to the array. If you don't specify any elements, splice simply removes the elements from the array.
-	 */
-	splice<T>(this: void, index: number, howMany: number, ...args: T[]): T[];
 }
 
 declare const Object: ObjectConstructor;
